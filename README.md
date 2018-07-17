@@ -40,7 +40,7 @@ Flags are special parameters without value.
 
 ## Download test data set ##
 
-`git clone blablabla`
+`git clone https://github.com/iarcbioinfo/data_test`
 
 ## Usage ##
 
