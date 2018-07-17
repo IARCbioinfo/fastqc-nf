@@ -38,11 +38,11 @@ Flags are special parameters without value.
 
 ## Download test data set ###
 
-git clone blablabla
+' git clone blablabla '
 
 ## Usage ##
 
-nextflow run FastQC.nf   --input_folder path/to/fasta/ --fastqc path/to/fastqc/ --multiqc path/to/multiqc/  --output_folder /path/to/output
+' nextflow run FastQC.nf   --input_folder path/to/fasta/ --fastqc path/to/fastqc/ --multiqc path/to/multiqc/  --output_folder /path/to/output '
 
 ## Output ##
 
