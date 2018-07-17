@@ -72,7 +72,7 @@ process fastqc {
 
 	shell:
         '''
-	!{params.fastqc} -t !{task.cpus} !{i}.fastq.gz -o  !{params.output_folder}
+	!{params.fastqc} -t !{task.cpus} !{i} -o  !{params.output_folder}
 	'''
 }
 
