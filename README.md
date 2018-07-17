@@ -7,9 +7,9 @@ Perform quality control of Fasta files.
 
 ## Dependencies ##
 
-1. This pipeline is based on nextflow. As we have several nextflow pipelines, we have centralized the common information in the IARC-nf repository. Please read it carefully as it contains essential information for the installation, basic usage and configuration of nextflow and our pipelines.
-2. FastQC: see official installation here. You can avoid installing all the external software by only installing Docker (not available yet). See the IARC-nf repository for more information.)
-3. Multiqc: see official installation here. You can avoid installing all the external software by only installing Docker (not available yet). See the IARC-nf repository for more information.)
+1. This pipeline is based on [nextflow](https://www.nextflow.io). As we have several nextflow pipelines, we have centralized the common information in the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository. Please read it carefully as it contains essential information for the installation, basic usage and configuration of nextflow and our pipelines.
+2. FastQC: see official installation [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). You can avoid installing all the external software by only installing Docker (not available yet). See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.)
+3. Multiqc: see official installation [here](http://multiqc.info). You can avoid installing all the external software by only installing Docker (not available yet). See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.)
 
 ## Input ## 
 
