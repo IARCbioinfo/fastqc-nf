@@ -15,7 +15,7 @@ Perform quality control of Fasta files.
 
 **Name**        | **Description**
 --------------- | -------------
---input_folder  |  Folder containing Fasta files
+--input_folder  |  Folder containing BAM files
 --output_folder |  Path to output folder
 
 ## Parameters ##
@@ -36,7 +36,7 @@ Flags are special parameters without value.
 ------------- | -------------
 --help        | Display help
 
-## Download test data set ###
+## Download test data set ##
 
 `git clone blablabla`
 
