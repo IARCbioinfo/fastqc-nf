@@ -1,6 +1,8 @@
 
 # Quality control of aligned reads #
 
+![Imane FastQC](https://github.com/ImaneLboukili/WGS_analysis/blob/master/FastQC/FastQC-nf.png)
+
 ## Description ##
 
 Perform quality control of Fasta files.
