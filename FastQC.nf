@@ -73,6 +73,7 @@ process fastqc {
 	shell:
         '''
 	${params.fastqc} -t ${task.cpus} ${i}.fastq.gz -o  ${params.output_folder}
+	'''
 }
 
 process multiqc{
@@ -90,7 +91,3 @@ process multiqc{
 	  ${params.multiqc} -d ${params.output_folder}/*_fastqc.zip 
             '''
 }
-
-
-
-
