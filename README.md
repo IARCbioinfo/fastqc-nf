@@ -1,26 +1,26 @@
 
-#Quality control of aligned reads 
+# Quality control of aligned reads #
 
-##Description
+## Description ##
 
 Perform quality control of Fasta files.
 
-##Dependencies
+## Dependencies ##
 
 1. This pipeline is based on nextflow. As we have several nextflow pipelines, we have centralized the common information in the IARC-nf repository. Please read it carefully as it contains essential information for the installation, basic usage and configuration of nextflow and our pipelines.
 2. FastQC: see official installation here. You can avoid installing all the external software by only installing Docker (not available yet). See the IARC-nf repository for more information.)
 3. Multiqc: see official installation here. You can avoid installing all the external software by only installing Docker (not available yet). See the IARC-nf repository for more information.)
 
-##Input
+## Input ## 
 
 **Name**        | **Description**
 --------------- | -------------
 --input_folder  |  Folder containing Fasta files
 --output_folder |  Path to output folder
 
-##Parameters
+## Parameters ##
 
-###Optional
+### Optional ###
 
 **Name**          | **Example value** | **Description**
 ------------------| ------------------| ------------------
@@ -28,7 +28,7 @@ Perform quality control of Fasta files.
 --multiqc         | /usr/bin/multiqc  | Path to MutliQC installation directory
 --cpu             | INTEGER           | Number of cpus to be used
 
-###Flags
+### Flags ###
 
 Flags are special parameters without value.
 
@@ -36,15 +36,15 @@ Flags are special parameters without value.
 ------------- | -------------
 --help        | Display help
 
-##Download test data set
+## Download test data set ###
 
 git clone blablabla
 
-##Usage
+## Usage ##
 
 nextflow run FastQC.nf   --input_folder path/to/fasta/ --fastqc path/to/fastqc/ --multiqc path/to/multiqc/  --output_folder /path/to/output
 
-##Output
+## Output ##
 
 **Name**        | **Description**
 --------------- | -------------
