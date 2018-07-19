@@ -17,8 +17,8 @@
 
 
 params.help          		 = null
-params.cpu            		= "12"
-params.mem           		 = "6"
+params.cpu            		= 12
+params.mem           		 = 32
 
 
 log.info ""
@@ -63,7 +63,8 @@ fastas = Channel.fromPath( params.input_folder+'/*.fastq.gz' )
               
 
 process fastqc {
-		cpus params.cpu
+		 cpus params.cpu
+  memory params.mem+'GB'
 
         input:
         file i from fastas
