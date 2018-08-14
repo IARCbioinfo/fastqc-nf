@@ -48,7 +48,7 @@ if (params.help) {
     log.info "Optional arguments:"
     log.info "--cpu                  INTEGER              Number of cpu to use (default=12)"
     log.info "--config               FILE                 Use custom configuration file"
-    log.info "--mem                  INTEGER              Size of memory used. Default 6Gb"
+    log.info "--mem                  INTEGER              Size of memory used. Default 32Gb"
     log.info ""
     log.info "Flags:"
     log.info "--help                                      Display this message"
@@ -64,7 +64,7 @@ fastas = Channel.fromPath( params.input_folder+'/*.fastq.gz' )
 
 process fastqc {
 		 cpus params.cpu
-  memory params.mem+'GB'
+
 
         input:
         file i from fastas
