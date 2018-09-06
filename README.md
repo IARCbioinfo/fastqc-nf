@@ -28,7 +28,6 @@ Perform quality control of Fasta files.
 ------------------| ------------------| ------------------
 --fastqc          | /usr/bin/fastqc   | Path to FastQC installation directory
 --multiqc         | /usr/bin/multiqc  | Path to MutliQC installation directory
---cpu             | INTEGER           | Number of cpus to be used
 
 ### Flags ###
 
