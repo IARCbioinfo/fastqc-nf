@@ -76,3 +76,19 @@ process fastqc {
   !{params.fastqc} -o . !{f}
   '''
 }
+
+process multiqc {
+
+    publishDir "${params.output_folder}", mode: 'copy', pattern: '{multiqc_report.html}'
+
+    input:
+    file fastqc_results from fastqc_results.collect()
+
+    output:
+    file("multiqc_report.html") into final_output
+
+    shell:
+    '''
+    !{params.multiqc} .
+    '''
+}
