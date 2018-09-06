@@ -1,23 +1,22 @@
 ################## BASE IMAGE ######################
-FROM biocontainers/biocontainers:v1.0.0_cv4
+FROM nfcore/base
 
 ################## METADATA ######################
 
-LABEL base_image="biocontainers:v1.0.0_cv4"
+LABEL base_image="nfcore/base"
 LABEL version="1.0"
-LABEL software="FastQC"
+LABEL software="FastQC-nf"
 LABEL software.version="1.0"
-LABEL about.summary="Quality control of aligned reads"
-LABEL about.home="https://github.com/ImaneLboukili/WGS_analysis/tree/master/FastQC"
-LABEL about.documentation="https://github.com/ImaneLboukili/WGS_analysis/tree/master/FastQC/README.md"
-LABEL about.license_file="https://github.com/ImaneLboukili/WGS_analysis/tree/master/FastQC/LICENSE.txt"
+LABEL about.summary="Container image containing all requirements for FastQC-nf"
+LABEL about.home="http://github.com/IARCbioinfo/FastQC-nf"
+LABEL about.documentation="http://github.com/IARCbioinfo/FastQC-nf/README.md"
+LABEL about.license_file="http://github.com/IARCbioinfo/FastQC-nf/LICENSE.txt"
 LABEL about.license="GNU-3.0"
 
 ################## MAINTAINER ######################
-MAINTAINER Imane Lboukili <lboukilii@students.iarc.fr>
+MAINTAINER Tiffany Delhomme <delhommet@students.iarc.fr>
 
 ################## INSTALLATION ######################
 
 COPY environment.yml /
-RUN conda env create -f /environment.yml && conda clean -a
-ENV PATH /opt/conda/envs/FastQC/bin:$PATH
+RUN conda env update -n root -f /environment.yml && conda clean -a
