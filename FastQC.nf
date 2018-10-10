@@ -17,6 +17,7 @@
 
 
 params.help = null
+params.config = null
 params.fastqc = "fastqc"
 params.multiqc = "multiqc"
 params.input_folder = "FASTQ/"
@@ -45,8 +46,8 @@ if (params.help) {
     log.info "--output_folder        PATH                 Output directory for html and zip files (default=fastqc_ouptut)"
     log.info ""
     log.info "Optional arguments:"
-    log.info "--multiqc              PATH               MultiQC installation dir"
-    log.info "--fastqc              PATH                FastQC installation dir"
+    log.info "--multiqc              PATH                 MultiQC installation dir (default=multiqc)"
+    log.info "--fastqc               PATH                 FastQC installation dir (default=fastqc)"
     log.info "--config               FILE                 Use custom configuration file"
     log.info ""
     log.info "Flags:"
@@ -54,6 +55,8 @@ if (params.help) {
     log.info ""
     exit 0
 }
+
+assert (params.input_folder != null) : "please provide the --input_folder option"
 
 fastas = Channel.fromPath( params.input_folder+'/*.fastq.gz' )
               .ifEmpty { error "Cannot find any fasta file (.fastq.gz) in: ${params.input_folder}" }
