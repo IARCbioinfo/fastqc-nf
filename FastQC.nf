@@ -71,7 +71,7 @@ process fastqc {
   file f from fastas
 
   output:
-  file ("${fastq_tag}_fastqc.zip") into fastqc_results
+  file ("${fastqc_tag}_fastqc.zip") into fastqc_results
 
   shell:
   fastqc_tag=f.baseName.replace(".fastq","")
