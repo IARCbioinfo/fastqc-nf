@@ -17,7 +17,7 @@ Perform quality control of Fasta files.
 
 **Name**        | **Description**
 --------------- | -------------
---input_folder  |  Folder containing BAM files
+--input_folder  |  Folder containing FASTQ files
 --output_folder |  Path to output folder
 
 ## Parameters ##
