@@ -1,4 +1,4 @@
-rom:nfcore/base
+from:nfcore/base
 Bootstrap:docker
 
 %labels
