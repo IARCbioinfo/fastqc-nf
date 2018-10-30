@@ -1,7 +1,7 @@
 
 # Quality control of raw sequencing reads #
 
-![Imane FastQC](https://github.com/ImaneLboukili/WGS_analysis/blob/master/FastQC/FastQC-nf.png)
+![fastqc-nf](https://github.com/IARCbioinfo/fastqc-nf/blob/master/fastqc-nf.png)
 
 ## Description ##
 
