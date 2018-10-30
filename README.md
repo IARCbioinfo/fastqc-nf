@@ -1,5 +1,5 @@
-
-# Quality control of raw sequencing reads #
+# fastqc-nf
+## Quality control of raw sequencing reads #
 
 ![fastqc-nf](https://github.com/IARCbioinfo/fastqc-nf/blob/master/fastqc-nf.png)
 
