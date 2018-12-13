@@ -39,10 +39,10 @@ if (params.help) {
     log.info ""
     log.info "----------nextflow pipeline for QC on fastq files-------"
     log.info ""
-    log.info "nextflow run FastQC.nf --input_folder path/to/fasta/ --fastqc path/to/fastqc/ --multiqc path/to/multiqc/  --output_folder /path/to/output"
+    log.info "nextflow run FastQC.nf --input_folder path/to/fastq/ --fastqc path/to/fastqc/ --multiqc path/to/multiqc/  --output_folder /path/to/output"
     log.info ""
     log.info "Mandatory arguments:"
-    log.info "--input_folder         FOLDER               Folder containing fasta files"
+    log.info "--input_folder         FOLDER               Folder containing fastq files"
     log.info "--output_folder        PATH                 Output directory for html and zip files (default=fastqc_ouptut)"
     log.info ""
     log.info "Optional arguments:"
@@ -58,17 +58,17 @@ if (params.help) {
 
 assert (params.input_folder != null) : "please provide the --input_folder option"
 
-fastas = Channel.fromPath( params.input_folder+'/*.fastq.gz' )
-              .ifEmpty { error "Cannot find any fasta file (.fastq.gz) in: ${params.input_folder}" }
+fastqs = Channel.fromPath( params.input_folder+'/*.fastq.gz' )
+              .ifEmpty { error "Cannot find any fastq file (.fastq.gz) in: ${params.input_folder}" }
 
 process fastqc {
 
   tag { fastqc_tag }
 
-  publishDir '${params.output_folder}', mode: 'copy' // remove this line do do not output fastqc results
+  publishDir '${params.output_folder}', mode: 'copy' 
 
   input:
-  file f from fastas
+  file f from fastqs
 
   output:
   file ("${fastqc_tag}_fastqc.zip") into fastqc_results
