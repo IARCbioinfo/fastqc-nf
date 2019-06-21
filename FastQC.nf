@@ -22,6 +22,7 @@ params.fastqc = "fastqc"
 params.multiqc = "multiqc"
 params.input_folder = "FASTQ/"
 params.output_folder = "."
+params.ext      = "fastq.gz"
 
 log.info ""
 log.info "----------------------------------------------------------------"
@@ -58,23 +59,23 @@ if (params.help) {
 
 assert (params.input_folder != null) : "please provide the --input_folder option"
 
-fastqs = Channel.fromPath( params.input_folder+'/*.fastq.gz' )
-              .ifEmpty { error "Cannot find any fastq file (.fastq.gz) in: ${params.input_folder}" }
+fastqs = Channel.fromPath( params.input_folder+'/*.'+params.ext )
+              .ifEmpty { error "Cannot find any file with extension ${params.ext} in: ${params.input_folder}" }
 
 process fastqc {
 
   tag { fastqc_tag }
 
-  publishDir '${params.output_folder}', mode: 'copy' 
+  publishDir "${params.output_folder}", mode: 'copy' 
 
   input:
   file f from fastqs
 
   output:
-  file ("${fastqc_tag}_fastqc.zip") into fastqc_results
+  file ("*fastqc.zip") into fastqc_results
 
   shell:
-  fastqc_tag=f.baseName.replace(".fastq","")
+  fastqc_tag=f.baseName.replace("${params.ext}","")
   '''
   !{params.fastqc} -o . !{f}
   '''
