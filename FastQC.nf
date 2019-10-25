@@ -22,7 +22,9 @@ params.fastqc = "fastqc"
 params.multiqc = "multiqc"
 params.input_folder = "FASTQ/"
 params.output_folder = "."
-params.ext      = "fastq.gz"
+params.ext = "fastq.gz"
+params.cpu = 2
+params.mem = 10
 
 log.info ""
 log.info "----------------------------------------------------------------"
@@ -59,11 +61,35 @@ if (params.help) {
 
 assert (params.input_folder != null) : "please provide the --input_folder option"
 
-fastqs = Channel.fromPath( params.input_folder+'/*.'+params.ext )
+infiles = Channel.fromPath( params.input_folder+'/*.'+params.ext )
               .ifEmpty { error "Cannot find any file with extension ${params.ext} in: ${params.input_folder}" }
 
-process fastqc {
 
+if(params.ext=="bam"){
+  process bam2fq {
+    cpus params.cpu
+    memory params.mem+'G'
+    tag { file_tag }
+        
+	  input:
+    file infile from infiles
+	   
+    output:
+	  file("${file_tag}*.fastq.gz") into fastqpairs
+
+    shell:
+	  file_tag = infile.baseName
+	  '''
+    set -o pipefail
+    samtools collate -uOn 128 !{file_tag}.bam tmp_!{file_tag} | samtools fastq -1 !{file_tag}_1.fastq.gz -2 !{file_tag}_2.fastq.gz -
+    '''
+  }
+  fastqs = fastqpairs.collect()
+}else{
+  fastqs = infiles
+}
+
+process fastqc {
   tag { fastqc_tag }
 
   publishDir "${params.output_folder}", mode: 'copy' 
