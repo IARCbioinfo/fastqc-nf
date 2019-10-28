@@ -17,12 +17,10 @@
 
 
 params.help = null
-params.config = null
-params.fastqc = "fastqc"
-params.multiqc = "multiqc"
 params.input_folder = "FASTQ/"
 params.output_folder = "."
 params.ext = "fastq.gz"
+params.multiqc_config = 'NO_FILE'
 params.cpu = 2
 params.mem = 10
 
@@ -49,9 +47,10 @@ if (params.help) {
     log.info "--output_folder        PATH                 Output directory for html and zip files (default=fastqc_ouptut)"
     log.info ""
     log.info "Optional arguments:"
-    log.info "--multiqc              PATH                 MultiQC installation dir (default=multiqc)"
-    log.info "--fastqc               PATH                 FastQC installation dir (default=fastqc)"
-    log.info "--config               FILE                 Use custom configuration file"
+    log.info '--ext                  STRING               Extension of files (default : fastq.gz)'
+    log.info '--multiqc_config       PATH                 config yaml file for multiqc (default : none)'
+    log.info '--cpu                  INTEGER              Number of cpu used by fastqc (default: 2).'
+    log.info '--mem                  INTEGER              Size of memory used for mapping (in GB) (default: 10).'
     log.info ""
     log.info "Flags:"
     log.info "--help                                      Display this message"
@@ -61,8 +60,13 @@ if (params.help) {
 
 assert (params.input_folder != null) : "please provide the --input_folder option"
 
+log.info "multiqc_config = ${params.multiqc_config}"
+
 infiles = Channel.fromPath( params.input_folder+'/*.'+params.ext )
               .ifEmpty { error "Cannot find any file with extension ${params.ext} in: ${params.input_folder}" }
+
+//multiqc config file
+ch_config_for_multiqc = file(params.multiqc_config)
 
 
 if(params.ext=="bam"){
@@ -84,7 +88,7 @@ if(params.ext=="bam"){
     samtools collate -uOn 128 !{file_tag}.bam tmp_!{file_tag} | samtools fastq -1 !{file_tag}_1.fastq.gz -2 !{file_tag}_2.fastq.gz -
     '''
   }
-  fastqs = fastqpairs.collect()
+  fastqs = fastqpairs.flatten()
 }else{
   fastqs = infiles
 }
@@ -103,22 +107,31 @@ process fastqc {
   shell:
   fastqc_tag=f.baseName.replace("${params.ext}","")
   '''
-  !{params.fastqc} -o . !{f}
+  fastqc -o . !{f}
   '''
 }
 
 process multiqc {
+    cpus '1'
+    memory '2GB'
+    tag { "multiqc"}
 
     publishDir "${params.output_folder}", mode: 'copy', pattern: '{multiqc_report.html}'
 
     input:
     file fastqc_results from fastqc_results.collect()
+    file multiqc_config from ch_config_for_multiqc
 
     output:
     file("multiqc_report.html") into final_output
 
     shell:
+    if( multiqc_config.name=='NO_FILE' ){
+        opt = ""
+    }else{
+        opt = "--config ${multiqc_config}"
+    }
     '''
-    !{params.multiqc} .
+    multiqc . -n multiqc_pretrim_report.html -m fastqc !{opt} --comment "Whole Genome Sequencing raw reads QC report"
     '''
 }
