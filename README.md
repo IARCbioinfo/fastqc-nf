@@ -17,6 +17,11 @@ Perform quality control of Fasta files.
 2. FastQC: see official installation [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). You can avoid installing all the external software by only installing Docker (not available yet). See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.)
 3. Multiqc: see official installation [here](http://multiqc.info). You can avoid installing all the external software by only installing Docker (not available yet). See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.)
 
+### BAM input files
+In order to process BAM files, we convert fastq files to bam files with:
+
+4. [*samtools*](http://samtools.sourceforge.net/)
+
 ## Input ## 
 
 **Name**        | **Description**
@@ -30,8 +35,10 @@ Perform quality control of Fasta files.
 
 **Name**          | **Example value** | **Description**
 ------------------| ------------------| ------------------
---fastqc          | /usr/bin/fastqc   | Path to FastQC installation directory
---multiqc         | /usr/bin/multiqc  | Path to MutliQC installation directory
+--ext              | fastq.gz | Extension of files
+--multiqc_config  |  none               |   config yaml file for multiqc
+--cpu                |2 |              Number of cpu used by fastqc
+--mem               | 10 | Size of memory used for mapping (in GB)
 
 ### Flags ###
 
@@ -47,12 +54,19 @@ Flags are special parameters without value.
 
 ## Usage ##
 
-`nextflow run FastQC.nf   --input_folder path/to/fasta/ --fastqc path/to/fastqc/ --multiqc path/to/multiqc/  --output_folder /path/to/output`
+`nextflow run FastQC.nf   --input_folder path/to/fasta/ --output_folder /path/to/output`
 
 ## Output ##
 
-**Name**        | **Description**
---------------- | -------------
-HTMLs           | An html file for each analysed Fasta file, and one containing the aggregated results
+| Type      | Description     |
+|-----------|---------------|
+| multiqc_fastqc_report.html  | multiQC report for fastQC |
+| multiqc_fastqc_report_data  | data used for the multiQC report HTMLs    | 
 
+## Contributions
+
+  | Name      | Email | Description     |
+  |-----------|---------------|-----------------| 
+  | Nicolas Alcala*    | AlcalaN@fellows.iarc.fr    | Developer to contact for support |
+  | Tiffany Delhomme    |    | Developer |
 
