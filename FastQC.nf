@@ -132,6 +132,6 @@ process multiqc {
         opt = "--config ${multiqc_config}"
     }
     '''
-    multiqc . -n multiqc_pretrim_report.html -m fastqc !{opt} --comment "Whole Genome Sequencing raw reads QC report"
+    multiqc . -n multiqc_fastqc_report.html -m fastqc !{opt} --comment "Raw reads QC report"
     '''
 }
