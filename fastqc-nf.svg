@@ -13,7 +13,10 @@
    version="1.1"
    id="svg2"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="fastqc-nf.svg">
+   sodipodi:docname="fastqc-nf.svg"
+   inkscape:export-filename="/run/user/1000/gvfs/smb-share:server=shares.hpc.iarc.lan,share=data/gcs/mesomics/work/WGS/analyses/Fastq_QC/fastqc-nf/fastqc-nf.png"
+   inkscape:export-xdpi="200"
+   inkscape:export-ydpi="200">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -33,7 +36,7 @@
      fit-margin-bottom="0"
      inkscape:zoom="0.63247486"
      inkscape:cx="301.7777"
-     inkscape:cy="734.10175"
+     inkscape:cy="607.6145"
      inkscape:window-x="38"
      inkscape:window-y="65"
      inkscape:window-maximized="0"
