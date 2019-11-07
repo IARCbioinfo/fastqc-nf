@@ -11,6 +11,7 @@ jobs:
         - run: cd ~/project/ ; docker build -t iarcbioinfo/fastqc-nf .
         - run: cd ; nextflow run ~/project/FastQC.nf --help
         - run: cd ; nextflow run ~/project/FastQC.nf -with-docker iarcbioinfo/fastqc-nf --input_folder ~/data_test/FASTQ/ --output_folder ~/results/
+               no_output_timeout: 30m
         - run: cd ; mv ~/results/nf-pipeline_info/FastQC_dag.html ~/project/
         - deploy:
             branch: [dev, master]

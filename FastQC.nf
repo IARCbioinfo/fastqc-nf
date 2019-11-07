@@ -116,14 +116,14 @@ process multiqc {
     memory '2GB'
     tag { "multiqc"}
 
-    publishDir "${params.output_folder}", mode: 'copy', pattern: '{multiqc_report.html}'
+    publishDir "${params.output_folder}", mode: 'copy'
 
     input:
     file fastqc_results from fastqc_results.collect()
     file multiqc_config from ch_config_for_multiqc
 
     output:
-    file("multiqc_report.html") into final_output
+    file("multiqc_fastqc*") into final_output
 
     shell:
     if( multiqc_config.name=='NO_FILE' ){
