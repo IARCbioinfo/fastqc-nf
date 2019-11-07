@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2013-2018, Centre for Genomic Regulation (CRG)
+  ~ Copyright 2013-2019, Centre for Genomic Regulation (CRG)
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -109,15 +109,17 @@ nodes: [
 { data: { id: 'p1', label: 'ifEmpty'}, classes: 'OPERATOR' },
 { data: { id: 'p2', label: 'fastqc'}, classes: 'PROCESS' },
 { data: { id: 'p3', label: 'collect'}, classes: 'OPERATOR' },
-{ data: { id: 'p4', label: 'multiqc'}, classes: 'PROCESS' },
-{ data: { id: 'p5'}, classes: 'NODE' },
+{ data: { id: 'p4'}, classes: 'ORIGIN' },
+{ data: { id: 'p5', label: 'multiqc'}, classes: 'PROCESS' },
+{ data: { id: 'p6'}, classes: 'NODE' },
 ],
 edges: [
 { data: { source: 'p0', target: 'p1'} },
-{ data: { source: 'p1', target: 'p2', label: 'fastas' } },
+{ data: { source: 'p1', target: 'p2', label: 'infiles' } },
 { data: { source: 'p2', target: 'p3', label: 'fastqc_results' } },
-{ data: { source: 'p3', target: 'p4'} },
-{ data: { source: 'p4', target: 'p5', label: 'final_output' } },
+{ data: { source: 'p3', target: 'p5'} },
+{ data: { source: 'p4', target: 'p5', label: 'multiqc_config' } },
+{ data: { source: 'p5', target: 'p6', label: 'final_output' } },
 ],
 },
 
