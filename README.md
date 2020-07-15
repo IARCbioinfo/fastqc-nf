@@ -48,13 +48,12 @@ Flags are special parameters without value.
 ------------- | -------------
 --help        | Display help
 
-## Download test data set ##
-
-`git clone https://github.com/iarcbioinfo/data_test`
 
 ## Usage ##
 
-`nextflow run FastQC.nf   --input_folder path/to/fasta/ --output_folder /path/to/output`
+`nextflow run IARCbioinfo/fastqc-nf -r v1.1 -profile singularity --input_folder input --output_folder results`
+
+To run the pipeline without singularity just remove "-profile singularity"
 
 ## Output ##
 
