@@ -25,9 +25,9 @@ params.cpu = 2
 params.mem = 10
 
 log.info ""
-log.info "----------------------------------------------------------------"
-log.info "    Unaligned reads quality control with FastQC and MultiQC     "
-log.info "----------------------------------------------------------------"
+log.info "-----------------------------------------------------------------------"
+log.info "fastqc-nf v1.1: Unaligned reads quality control with FastQC and MultiQC"
+log.info "-----------------------------------------------------------------------"
 log.info "Copyright (C) IARC/WHO"
 log.info "This program comes with ABSOLUTELY NO WARRANTY; for details see LICENSE"
 log.info "This is free software, and you are welcome to redistribute it"
@@ -38,13 +38,11 @@ if (params.help) {
     log.info "                     USAGE                              "
     log.info "--------------------------------------------------------"
     log.info ""
-    log.info "----------nextflow pipeline for QC on fastq files-------"
-    log.info ""
-    log.info "nextflow run FastQC.nf --input_folder path/to/fastq/ --fastqc path/to/fastqc/ --multiqc path/to/multiqc/  --output_folder /path/to/output"
+    log.info "nextflow run IARCbioinfo/fastqc-nf --input_folder path/to/fastq/ --output_folder /path/to/output [OPTIONS]"
     log.info ""
     log.info "Mandatory arguments:"
     log.info "--input_folder         FOLDER               Folder containing fastq files"
-    log.info "--output_folder        PATH                 Output directory for html and zip files (default=fastqc_ouptut)"
+    log.info "--output_folder        FOLDER                 Output directory for html and zip files (default=fastqc_ouptut)"
     log.info ""
     log.info "Optional arguments:"
     log.info '--ext                  STRING               Extension of files (default : fastq.gz)'
