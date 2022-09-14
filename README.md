@@ -51,7 +51,7 @@ Flags are special parameters without value.
 
 ## Usage ##
 
-`nextflow run IARCbioinfo/fastqc-nf -r v1.1 -profile singularity --input_folder input --output_folder results`
+`nextflow run digenoma-lab/fastqc-nf -r v1.1 -profile singularity --input_folder input --output_folder results`
 
 To run the pipeline with docker or conda instead of singularity, just replace "-profile singularity" with "-profile docker" or "-profile conda", respectively. To run with your own local installation of softwares, just remove "-profile singularity"
 
@@ -62,8 +62,9 @@ To run the pipeline with docker or conda instead of singularity, just replace "-
 | multiqc_fastqc_report.html  | multiQC report for fastQC |
 | multiqc_fastqc_report_data  | data used for the multiQC report HTMLs    | 
 
-## Contributions
 
+
+## Former developpers
   | Name      | Email | Description     |
   |-----------|---------------|-----------------| 
   | Nicolas Alcala*    | AlcalaN@fellows.iarc.fr    | Developer to contact for support |
