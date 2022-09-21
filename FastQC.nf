@@ -21,8 +21,8 @@ params.input_folder = "FASTQ/"
 params.output_folder = "."
 params.ext = "fastq.gz"
 params.multiqc_config = 'NO_FILE'
-params.cpu = 2
-params.mem = 10
+params.cpu = 1
+params.mem = 2
 
 log.info ""
 log.info "-----------------------------------------------------------------------"
@@ -92,6 +92,9 @@ if(params.ext=="bam"){
 }
 
 process fastqc {
+    cpus params.cpu
+    memory params.mem+'G'
+ 
   tag { fastqc_tag }
 
   publishDir "${params.output_folder}", mode: 'copy' 
